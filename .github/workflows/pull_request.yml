@@ -1,0 +1,13 @@
+name: pull_request
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality_checks:
+    uses: ./.github/workflows/quality_checks.yml
+    with:
+      BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
