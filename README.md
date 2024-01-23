@@ -111,11 +111,10 @@ This .github folder contains workflows and templates related to github
 
 Workflows are in the .github/workflows folder
 
-- `build.yml`: Runs check-licenses, lint, test and SonarCloud scan against the repo. Called from pull_request.yml and release.yml
 - `combine-dependabot-prs.yml`: Workflow for combining dependabot pull requests. Runs on demand
 - `dependabot_auto_approve_and_merge.yml`: Workflow to auto merge dependabot updates
 - `pr-link.yaml`: This workflow template links Pull Requests to Jira tickets and runs when a pull request is opened
-- `pull_request.yml`: Called when pull request is opened or updated. Runs build.yml
-- `quality_checks.yml`: Workflow verifies and enhances code quality through setup, dependencies, checks, and SonarCloud scanning
-- `release.yml`: Run when code is merged to main branch or a tag starting v is pushed. Calls build.yml
 - `publish.yml`: Publishes the package to GitHub Packages. Called on demand
+- `pull_request.yml`: Called when pull request is opened or updated. Runs quality_checks.yml
+- `quality_checks.yml`: Workflow verifies and enhances code quality through setup, dependencies, checks, and SonarCloud scanning
+- `release.yml`: Run when code is merged to main branch or a tag starting v is pushed. Calls quality_checks.yml
