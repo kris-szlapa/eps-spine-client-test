@@ -1,3 +1,5 @@
-export function sum(a: number, b: number): number {
-  return a + b
-}
+import {createSpineClient} from "./spine-client"
+import {NHSNumberValidationError} from "./extractNHSNumber"
+import {LiveSpineClient} from "./live-spine-client"
+
+export {createSpineClient, LiveSpineClient, NHSNumberValidationError}

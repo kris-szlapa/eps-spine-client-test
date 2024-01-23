@@ -1,10 +1,10 @@
+.PHONY: install build test publish release clean lint check-licenses deep-clean
+
 guard-%:
 	@ if [ "${${*}}" = "" ]; then \
 		echo "Environment variable $* not set"; \
 		exit 1; \
 	fi
-
-.PHONY: install build test publish release clean lint
 
 install: install-python install-hooks install-node
 
@@ -17,9 +17,7 @@ install-node:
 install-hooks:
 	poetry run pre-commit install --install-hooks --overwrite
 
-build: build-node
-
-build-node:
+build:
 	npm run build
 
 lint: lint-node lint-python
@@ -30,14 +28,11 @@ lint-node:
 lint-python:
 	poetry run flake8 scripts/*.py --config .flake8
 
-test: test-node
-
-test-node: build-node
+test:
 	npm run test
 
 clean:
-	rm -rf coverage
-	rm -rf lib
+	rm -rf coverage lib
 
 deep-clean: clean
 	rm -rf .venv

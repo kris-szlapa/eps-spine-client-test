@@ -1,4 +1,4 @@
-name: pull_request
+name: deploy_pr
 
 on:
   pull_request:
