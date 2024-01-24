@@ -20,13 +20,16 @@ install-hooks:
 build:
 	npm run build
 
-lint: lint-node lint-python
+lint: lint-node lint-python lint-githubactions
 
 lint-node:
 	npm run lint
 
 lint-python:
 	poetry run flake8 scripts/*.py --config .flake8
+
+lint-githubactions:
+	actionlint
 
 test:
 	npm run test
