@@ -1,5 +1,5 @@
 {
-  "name": "nhs-eps-spine-client",
+  "name": "eps-spine-client-test",
   "version": "1.0.0",
   "description": "The code to invoke the Spine client",
   "scripts": {
@@ -12,15 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NHSDigital/nhs-eps-spine-client.git"
+    "url": "git+https://github.com/kris-szlapa/eps-spine-client-test.git"
   },
   "keywords": [],
   "author": "NHS Digital",
   "license": "MIT",
   "type": "module",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
     "@jest/globals": "^29.7.0",
@@ -49,7 +46,23 @@
     "esbuild": "^0.19.8"
   },
   "bugs": {
-    "url": "https://github.com/NHSDigital/nhs-eps-spine-client/issues"
+    "url": "https://github.com/kris-szlapa/eps-spine-client-test/issues"
   },
-  "homepage": "https://github.com/NHSDigital/nhs-eps-spine-client#readme"
+  "homepage": "https://github.com/kris-szlapa/eps-spine-client-test#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "files": ["lib"],
+  "main": "lib/scr/index.js",
+  "release": {
+    "branches": ["main"],
+    "plugins": [
+      ["@semantic-release/commit-analyzer",
+      {
+        "preset": "eslint"
+      }],
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  }
 }
