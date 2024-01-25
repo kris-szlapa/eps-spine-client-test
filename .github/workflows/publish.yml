@@ -2,6 +2,9 @@ name: Publish to GitHub packages
 
 on:
   workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
 
 jobs:
   publish:
@@ -23,7 +26,7 @@ jobs:
           node-version: "18"
           cache: yarn
           registry-url: "https://npm.pkg.github.com"
-          scope: "@NHSDigital"
+          scope: "@kris-szlapa"
 
       - name: Install Dependencies
         run: yarn install --immutable
