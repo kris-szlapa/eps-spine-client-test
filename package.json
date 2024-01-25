@@ -8,10 +8,7 @@
     "test": "POWERTOOLS_DEV=true NODE_OPTIONS=--experimental-vm-modules jest --no-cache --coverage",
     "check-licenses": "license-checker --failOn GPL --failOn LGPL"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kris-szlapa/eps-spine-client-test.git"
-  },
+  "repository": "git+https://github.com/kris-szlapa/eps-spine-client-test.git",
   "keywords": [],
   "author": "NHS Digital",
   "license": "MIT",
