@@ -50,9 +50,10 @@ jobs:
       - name: Build
         run: make build
 
-  # publish_package:
-  #   uses: ./.github/workflows/publish.yml
-  #   with:
-  #     BRANCH_NAME: main
-  #   secrets:
-  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # use semantic-release to determine the next version number
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release
