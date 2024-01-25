@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "The code to invoke the Spine client",
   "scripts": {
-    "unit": "POWERTOOLS_DEV=true jest",
-    "build": "tsc --build --clean ./tsconfig.json",
-    "lint": "eslint . --ext .ts --max-warnings 0 --fix",
-    "test": "npm run compile && npm run unit",
-    "check-licenses": "license-checker --failOn GPL --failOn LGPL",
-    "compile": "tsc"
+    "build": "tsc",
+    "lint": "eslint . --fix",
+    "test": "POWERTOOLS_DEV=true NODE_OPTIONS=--experimental-vm-modules jest --no-cache --coverage",
+    "check-licenses": "license-checker --failOn GPL --failOn LGPL"
   },
   "repository": {
     "type": "git",
@@ -52,17 +50,93 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "files": ["lib"],
-  "main": "lib/scr/index.js",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
-      ["@semantic-release/commit-analyzer",
-      {
-        "preset": "eslint"
-      }],
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/github"
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "eslint",
+          "releaseRules": [
+            {
+              "reminder": "Please update CONTRIBUTING.md if you change this",
+              "release": false
+            },
+            {
+              "tag": "Fix",
+              "release": "patch"
+            },
+            {
+              "tag": "Update",
+              "release": "patch"
+            },
+            {
+              "tag": "New",
+              "release": "minor"
+            },
+            {
+              "tag": "Breaking",
+              "release": "major"
+            },
+            {
+              "tag": "Docs",
+              "release": "patch"
+            },
+            {
+              "tag": "Build",
+              "release": false
+            },
+            {
+              "tag": "Upgrade",
+              "release": "patch"
+            },
+            {
+              "tag": "Chore",
+              "release": "patch"
+            }
+          ]
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "eslint",
+          "linkCompare": false,
+          "linkReferences": false
+        }
+      ],
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "lib/index.js",
+              "label": "index.js"
+            },
+            {
+              "path": "lib/index.d.ts",
+              "label": "index.d.ts"
+            },
+            {
+              "path": "lib/index.js.map",
+              "label": "index.js.map"
+            },
+            {
+              "path": "package.json",
+              "label": "package.json"
+            }
+          ],
+          "successComment": false,
+          "failComment": false,
+          "failTitle": false
+        }
+      ]
     ]
   }
 }
